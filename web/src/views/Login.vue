@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <el-card header="管理员登录">
+    <el-card header="用户登录">
       <el-form label-width="4rem" @submit.native.prevent="login">
         <el-form-item label="用户名">
           <el-input v-model="model.username"></el-input>
