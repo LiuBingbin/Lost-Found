@@ -7,6 +7,7 @@ import Lost from '../views/Lost.vue'
 import Personal from '../views/Personal.vue'
 import Publish from '../views/Publish.vue'
 import Login from '../views/Login.vue'
+import Detail from '../views/Detail.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,7 @@ const routes = [
       { path: '/lost', component: Lost },
       { path: '/personal', component: Personal },
       { path: '/publish', component: Publish },
+      { path: '/details/:id', component: Detail, props:true},
     ]
   },
 ]

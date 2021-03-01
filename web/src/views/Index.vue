@@ -12,7 +12,7 @@
       </el-carousel-item>
     </el-carousel>
     <el-divider></el-divider>
-    <el-card class="box-card" v-for="item in goodsList" :key="item._id">
+    <el-card class="box-card" v-for="item in goodsList" :key="item._id" @click.native="$router.push(`/details/${item._id}`)">
       <div slot="header">
         <img
           v-if="item.image"
