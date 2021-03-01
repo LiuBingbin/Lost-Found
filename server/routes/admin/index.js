@@ -13,12 +13,16 @@ module.exports = app => {
         const model = await Goods.findByIdAndUpdate(req.params.id, req.body)
         res.send(model)
     })
+    router.get('/goods', async (req, res) => {
+        const items = await Goods.find().limit(10)
+        res.send(items)
+    })
     router.get('/goods/lost', async (req, res) => {
-        const items = await Goods.find({ radio: '拾得' })
+        const items = await Goods.find({ radio: '招领启事' })
         res.send(items)
     })
     router.get('/goods/found', async (req, res) => {
-        const items = await Goods.find({ radio: '丢失' })
+        const items = await Goods.find({ radio: '寻物启事' })
         res.send(items)
     })
     router.get('/goods/:id', async (req, res) => {

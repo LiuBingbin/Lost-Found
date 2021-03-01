@@ -5,6 +5,7 @@ import Index from '../views/Index.vue'
 import Found from '../views/Found.vue'
 import Lost from '../views/Lost.vue'
 import Personal from '../views/Personal.vue'
+import Publish from '../views/Publish.vue'
 import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
@@ -25,6 +26,7 @@ const routes = [
       { path: '/found', component: Found },
       { path: '/lost', component: Lost },
       { path: '/personal', component: Personal },
+      { path: '/publish', component: Publish },
     ]
   },
 ]

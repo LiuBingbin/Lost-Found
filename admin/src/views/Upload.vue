@@ -4,8 +4,8 @@
     <el-form label-width="120px" @submit.native.prevent="save">
       <el-form-item>
         <el-radio-group v-model="model.radio">
-          <el-radio-button label="拾得"></el-radio-button>
-          <el-radio-button label="丢失"></el-radio-button>
+          <el-radio-button label="招领启事"></el-radio-button>
+          <el-radio-button label="寻物启事"></el-radio-button>
         </el-radio-group>
       </el-form-item>
       <el-form-item label="物品图片">
@@ -54,7 +54,7 @@ export default {
   data() {
     return {
       model: {
-        radio: "拾得",
+        radio: "招领启事",
       },
     };
   },
