@@ -3,6 +3,8 @@ module.exports = app => {
     const router = express.Router()
     const Goods = require('../../models/Goods')
     const AdminUser = require('../../models/AdminUser')
+
+    //goods
     router.post('/goods', async (req, res) => {
         const model = await Goods.create(req.body)
         res.send(model)
@@ -12,11 +14,11 @@ module.exports = app => {
         res.send(model)
     })
     router.get('/goods/lost', async (req, res) => {
-        const items = await Goods.find({radio:'拾得'})
+        const items = await Goods.find({ radio: '拾得' })
         res.send(items)
     })
     router.get('/goods/found', async (req, res) => {
-        const items = await Goods.find({radio:'丢失'})
+        const items = await Goods.find({ radio: '丢失' })
         res.send(items)
     })
     router.get('/goods/:id', async (req, res) => {
@@ -30,6 +32,7 @@ module.exports = app => {
         })
     })
 
+    //admin_users
     router.post('/admin_users', async (req, res) => {
         const model = await AdminUser.create(req.body)
         res.send(model)
@@ -54,11 +57,29 @@ module.exports = app => {
     })
     app.use('/admin/api', router)
 
+    //上传文件
     const multer = require('multer')
     const upload = multer({ dest: __dirname + '/../../uploads' })
     app.post('/admin/api/upload', upload.single('file'), async (req, res) => {
         const file = req.file
         file.url = `http://localhost:3000/uploads/${file.filename}`
         res.send(file)
+    })
+
+    //登录
+    app.post('/admin/api/login', async (req, res) => {
+        const { username, password } = req.body
+        const user = await AdminUser.findOne({ username, password })
+        if (!user) {
+            return res.status(422).send({
+                message: '用户名或密码错误'
+            })
+        }
+        //返回token  npm i jsonwebtoken
+        const jwt = require('jsonwebtoken')
+        const token = jwt.sign({
+            id: user._id
+        }, app.get('secret'))
+        res.send(token)
     })
 }

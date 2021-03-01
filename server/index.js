@@ -2,6 +2,8 @@ const express = require('express')
 
 const app = express()
 
+app.set('secret', 'sdfgser223es')
+
 app.use(require('cors')())  //跨域模块
 app.use(express.json())
 //使uploads目录能被访问
