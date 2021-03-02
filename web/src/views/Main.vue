@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-container style="height: 100vh">
+    <el-container>
       <el-header style="background-color: #545c64">
         <el-menu
           :default-active="$route.path"
@@ -20,13 +20,13 @@
           </el-menu-item>
           <el-menu-item class="menu-item">
             <el-input v-model="input" placeholder="输入物品名进行搜索">
-              <el-button slot="append" icon="el-icon-search"> </el-button>
+              <el-button slot="append" icon="el-icon-search" @click="input && $router.push(`/search/${input}`)"> </el-button>
             </el-input>
           </el-menu-item>
         </el-menu>
       </el-header>
       <el-main style="width: 1000px; margin: 0 auto">
-        <router-view />
+        <router-view :key="this.$route.path" />
       </el-main>
     </el-container>
   </div>

@@ -11,7 +11,7 @@
         <el-form-item>
           <el-button type="primary" native-type="submit">登录</el-button>
         </el-form-item>
-        <div style="text-align:center"><el-link type="primary">还没有账号？点此去注册</el-link></div>
+        <div style="text-align:center"><el-link type="primary" @click.prevent="$router.push('/register')">还没有账号？点此去注册</el-link></div>
       </el-form>
     </el-card>
   </div>

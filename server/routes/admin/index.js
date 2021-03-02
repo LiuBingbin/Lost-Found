@@ -35,6 +35,11 @@ module.exports = app => {
             success: true
         })
     })
+    router.get('/search/:keyword', async (req, res) => {
+        const reg = new RegExp(req.params.keyword)
+        const items = await Goods.find({ name: reg })
+        res.send(items)
+    })
 
     //admin_users
     router.post('/admin_users', async (req, res) => {
