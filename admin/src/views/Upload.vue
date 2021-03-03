@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{id?'编辑':'上传'}}物品</h1>
+    <h1>{{ id ? "编辑" : "发布"+model.radio }}</h1>
     <el-form label-width="120px" @submit.native.prevent="save">
       <el-form-item>
         <el-radio-group v-model="model.radio">
@@ -40,7 +40,7 @@
         <el-input v-model="model.contact"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" native-type="submit">保存</el-button>
+        <el-button type="primary" native-type="submit">发布</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -60,20 +60,21 @@ export default {
   },
   methods: {
     save() {
+      this.model.status = '审核通过'
+      this.model.date = this.getDate(this.model.date);
       if (this.id) {
         this.$http.put(`/goods/${this.id}`, this.model);
       } else {
-        this.model.date = this.getDate(this.model.date);
         this.$http.post("/goods", this.model);
       }
-      if (this.model.radio === "拾得") {
+      if (this.model.radio === "招领启事") {
         this.$router.push("/goods/lost");
       } else {
         this.$router.push("/goods/found");
       }
       this.$message({
         type: "success",
-        message: "保存成功",
+        message: this.id ? "编辑成功" : "发布成功",
       });
     },
     getDate(date) {
@@ -95,9 +96,9 @@ export default {
       const res = await this.$http.get(`goods/${this.id}`);
       this.model = res.data;
     },
-    afterUpload(res){
-      this.$set(this.model, 'image', res.url)
-    }
+    afterUpload(res) {
+      this.$set(this.model, "image", res.url);
+    },
   },
   created() {
     this.id && this.fetch();
@@ -106,27 +107,27 @@ export default {
 </script>
 
 <style>
-  .avatar-uploader .el-upload {
-    border: 1px dashed #d9d9d9;
-    border-radius: 6px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  }
-  .avatar-uploader .el-upload:hover {
-    border-color: #409EFF;
-  }
-  .avatar-uploader-icon {
-    font-size: 28px;
-    color: #8c939d;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
-    text-align: center;
-  }
-  .avatar {
-    width: 178px;
-    height: 178px;
-    display: block;
-  }
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+}
 </style>

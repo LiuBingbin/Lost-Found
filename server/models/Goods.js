@@ -8,6 +8,8 @@ const schema = new mongoose.Schema({
     date: { type: String },
     address: { type: String },
     contact: { type: String },
+    userId: { type: String },
+    status: { type: String },
 })
 
 module.exports = mongoose.model('Goods', schema)

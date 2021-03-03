@@ -4,7 +4,7 @@ import Main from '../views/Main.vue'
 import Lost from '../views/Lost.vue'
 import Found from '../views/Found.vue'
 import Upload from '../views/Upload.vue'
-import Examine from '../views/Examine.vue'
+import Check from '../views/Check.vue'
 import AdminUserEdit from '../views/AdminUserEdit.vue'
 import AdminUserList from '../views/AdminUserList.vue'
 import Login from '../views/Login.vue'
@@ -21,6 +21,7 @@ const routes = [
     path: '/',
     name: 'Main',
     component: Main,
+    redirect: 'goods/lost',
     children: [
       {
         path: 'goods/lost',
@@ -40,8 +41,8 @@ const routes = [
         props: true
       },
       {
-        path: 'examine',
-        component: Examine
+        path: 'check',
+        component: Check
       },
       {
         path: 'admin_users/edit',

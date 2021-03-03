@@ -54,7 +54,7 @@ export default {
           message: "两次密码不一致",
         });
       } else {
-        const res = await this.$http.post("register", this.model);
+        const res = await this.$http.post("/register", this.model);
         console.log(res.data);
         this.$router.push("/login");
         this.$message({

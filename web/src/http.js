@@ -2,7 +2,7 @@ import axios from 'axios'
 import Vue from 'vue'
 
 const http = axios.create({
-    baseURL: 'http://localhost:3000/admin/api'
+    baseURL: 'http://localhost:3000/user/api'
 })
 
 //通用的错误处理，axios的响应拦截

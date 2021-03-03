@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <el-card class="box-card" v-for="item in goodsList" :key="item._id" @click.native="$router.push(`/details/${item._id}`)">
       <div slot="header">
         <img

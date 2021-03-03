@@ -12,6 +12,7 @@
       </el-carousel-item>
     </el-carousel>
     <el-divider></el-divider>
+    <div class="main">
       <el-card
         class="box-card"
         v-for="item in goodsList"
@@ -30,6 +31,7 @@
         <b style="font-size: 12px">{{ item.radio }}</b>
         <p>{{ item.description }}</p>
       </el-card>
+      </div>
     </div>
 </template>
 
@@ -53,10 +55,15 @@ export default {
 </script>
 
 <style>
+.main {
+  width: 100%;
+  columns: 4;
+  column-gap: 1.5rem;
+}
 .box-card {
-  width: 13rem;
-  float: left;
-  margin: 0 1.5rem 1.5rem 0;
+  break-inside: avoid;
+  width: 100%;
+  margin-bottom:1.5rem;
   cursor: pointer;
 }
 .box-card:hover {

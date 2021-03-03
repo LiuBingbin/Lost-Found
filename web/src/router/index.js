@@ -35,6 +35,7 @@ const routes = [
       { path: 'lost', component: Lost },
       { path: 'personal', component: Personal },
       { path: 'publish', component: Publish },
+      { path: 'personal/edit/:id', component: Publish, props:true},
       { path: 'details/:id', component: Detail, props:true},
       { path: 'search/:keyword', component: Search, props:true},
     ]

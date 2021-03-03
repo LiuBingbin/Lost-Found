@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>失物招领</h1>
+    <h1>招领启事</h1>
     <el-table :data="items">
       <el-table-column prop="_id" label="ID" width="220"> </el-table-column>
       <el-table-column prop="image" label="物品图片" width="180">
