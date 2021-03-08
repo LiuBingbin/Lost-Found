@@ -65,4 +65,18 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login') {
+    next()
+  } else {
+      const tokenStr = localStorage.getItem('token')
+      if (!tokenStr) {
+        next('/login')
+        alert('您还未登录，点击确认返回登录页面')
+      } else {
+        next()
+      }
+    }
+})
+
 export default router

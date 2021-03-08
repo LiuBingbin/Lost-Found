@@ -15,12 +15,12 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path:'/login',
+    path: '/login',
     name: 'Login',
     component: Login
   },
   {
-    path:'/register',
+    path: '/register',
     name: 'Register',
     component: Register
   },
@@ -35,15 +35,29 @@ const routes = [
       { path: 'lost', component: Lost },
       { path: 'personal', component: Personal },
       { path: 'publish', component: Publish },
-      { path: 'personal/edit/:id', component: Publish, props:true},
-      { path: 'details/:id', component: Detail, props:true},
-      { path: 'search/:keyword', component: Search, props:true},
+      { path: 'personal/edit/:id', component: Publish, props: true },
+      { path: 'details/:id', component: Detail, props: true },
+      { path: 'search/:keyword', component: Search, props: true },
     ]
   },
 ]
 
 const router = new VueRouter({
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login' || to.path === '/register') {
+    next()
+  } else {
+    const tokenStr = localStorage.getItem('token')
+    if (!tokenStr && (to.path === '/personal' || to.path === '/publish')) {
+      alert('您还未登录，点击确认返回登录页面')
+      router.push('/login')
+    } else {
+      next()
+    }
+  }
 })
 
 export default router

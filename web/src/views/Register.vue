@@ -42,20 +42,18 @@ export default {
   },
   methods: {
     async register() {
-      if(!(this.model.username&&this.model.password&&this.password1)){
+      if (!(this.model.username && this.model.password && this.password1)) {
         this.$message({
           type: "error",
           message: "不能留空",
         });
-      }
-      else if (this.password1 !== this.model.password) {
+      } else if (this.password1 !== this.model.password) {
         this.$message({
           type: "error",
           message: "两次密码不一致",
         });
       } else {
-        const res = await this.$http.post("/register", this.model);
-        console.log(res.data);
+        await this.$http.post("/register", this.model);
         this.$router.push("/login");
         this.$message({
           type: "success",
